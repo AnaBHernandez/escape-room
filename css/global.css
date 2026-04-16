@@ -1,0 +1,55 @@
+:root {
+    /* COLORES */
+    --naranja: #FF6B00;
+    --azul-claro: #00F0FF;
+    --malva: #E0BBE4;
+    --negro: #0D0D0F;
+    
+    /* FUENTES */
+    --font-primary: "Plus Jakarta Sans", sans-serif;
+    --font-secondary: "Saira Stencil", sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --font-weight-extra: 800;
+    
+    /* ESPACIOS */
+    --espacio-pequeno: 8px;
+    --espacio-medio: 16px;
+    --espacio-grande: 24px;
+    --espacio-muy-grande: 32px;
+    --espacio-enorme: 48px;
+    
+    /* TAMAÑOS */
+    --ancho-maximo-contenido: 1200px;
+    --altura-header: 80px;
+    --tamano-texto-pequeno: 14px;
+    --tamano-texto-normal: 16px;
+    --tamano-texto-grande: 20px;
+    --tamano-texto-muy-grande: 24px;
+    --tamano-texto-titulo: 32px;
+}
+.plus-jakarta-sans-<uniquifier> {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.saira-stencil-<uniquifier> {
+  font-family: "Saira Stencil", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+/* Aplicación base */
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-normal);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-secondary);
+}
+
