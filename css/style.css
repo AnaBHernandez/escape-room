@@ -1,0 +1,64 @@
+/* ESTILOS DE LA PROFESORA + FLEXBOX */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+  min-height: 100vh;
+  display: flex; /* Requisito Susana */
+  flex-direction: column;
+}
+
+.cabecera {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.contenedor {
+  flex: 1; /* Para que ocupe el espacio central */
+  display: flex; /* Flexbox para centrar las pantallas */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.pantalla {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.oculta {
+  display: none; /* Crucial para la navegación */
+}
+
+/* TODO: Paula puede cambiar estos colores de botón */
+button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
