@@ -1,6 +1,4 @@
-/* ============================================
-   VARIABLES GLOBALES
-   ============================================ */
+/* VARIABLES GLOBALES */
 :root {
     /* COLORES */
     --naranja: #FF6B00;
@@ -32,9 +30,7 @@
     --tamano-texto-titulo: 32px;
 }
 
-/* ============================================
-   RESET Y BASE
-   ============================================ */
+/* RESET Y BASE*/
 * {
     margin: 0;
     padding: 0;
@@ -52,9 +48,7 @@ body {
     flex-direction: column;
 }
 
-/* ============================================
-   TIPOGRAFÍA
-   ============================================ */
+/* TIPOGRAFÍA */
 h1, h2, h3 {
     font-family: var(--font-secondary);
     font-weight: var(--font-weight-bold);
@@ -73,9 +67,7 @@ h3 {
     font-size: var(--tamano-texto-grande);
 }
 
-/* ============================================
-   HEADER
-   ============================================ */
+/*HEADER */
 header {
     background-color: var(--negro);
     display: flex;
@@ -93,9 +85,7 @@ header {
     height: calc(var(--altura-header) );
     width: auto;
 }
-/* ============================================
-   NAVEGACIÓN
-   ============================================ */
+/* NAVEGACIÓN */
 nav {
     display: flex;
     gap: var(--espacio-grande);
@@ -139,9 +129,7 @@ nav a:hover::after {
     width: 80%;
 }
 
-/* ============================================
-   MAIN Y BOTONES
-   ============================================ */
+/* MAIN Y BOTONES */
 main {
     flex: 1;
     display: flex;
@@ -215,9 +203,7 @@ main {
     transform: scale(0.95);
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* FOOTER*/
 footer {
     background-color: var(--negro);
     color: var(--azul-claro);
@@ -240,9 +226,7 @@ footer small {
     letter-spacing: 1px;
 }
 
-/* ============================================
-   MEDIA QUERIES (RESPONSIVE)
-   ============================================ */
+/* MEDIA QUERIES (RESPONSIVE)*/
 @media (max-width: 768px) {
     :root {
         --altura-header: 60px;
@@ -300,9 +284,7 @@ footer small {
     }
 }
 
-/* ============================================
-   UTILIDADES ADICIONALES
-   ============================================ */
+/* UTILIDADES ADICIONALES */
 /* Clase para contenedor con ancho máximo */
 .container {
     max-width: var(--ancho-maximo-contenido);
