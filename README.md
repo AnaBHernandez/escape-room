@@ -1,26 +1,30 @@
 # 🚀 Búnker Factoría F5
 
-¡Bienvenido al sistema de seguridad oficial de Factoría F5! Este es un Escape Room interactivo diseñado con una estética **Cyberpunk Industrial**. El objetivo es superar una serie de retos lógicos para desbloquear la terminal y escapar del búnker.
+Sistema de seguridad oficial de Factoría F5. Escape Room interactivo con estética Cyberpunk Industrial. Supera los retos lógicos para desbloquear la terminal y escapar del búnker.
 
 ## 🎨 Identidad Visual
-- **Nombre del Proyecto:** Búnker Factoría F5.
-- **Colores:** Naranja corporativo (#FF6B00), Malva, Azul Neón y Fondos Antracita.
-- **Tipografía:** *Saira Stencil* (Industrial) y *Plus Jakarta Sans* (Interface).
+- **Nombre:** Búnker Factoría F5
+- **Colores:** Naranja (#FF6B00), Malva, Azul Neón, Fondo Antracita
+- **Tipografía:** Saira Stencil (Industrial) + Plus Jakarta Sans (Interface)
+
+## 🗺️ Flujo de Navegación
+![Diagrama de flujo](recursos/imagenes/diagrama-flujo.png)
+
 
 ## 🛠️ Metodología y Herramientas
-Para la gestión de este proyecto hemos utilizado:
-- **Comunicación:** Discord como canal principal de coordinación.
-- **Gestión de Tareas:** Canvas para la organización de sprints y entregas.
-- **Control de Versiones:** GitHub, siguiendo una metodología de ramas independientes.
----
+- **Arquitectura:** SPA con Vanilla JS y control de vistas mediante CSS (`.oculta`)
+- **Comunicación:** Discord
+- **Gestión de tareas:** Trello / GitHub Projects
+- **Control de versiones:** GitHub con ramas por desarrolladora
 
-## 👥 Perfiles de Equipo
-Este proyecto ha sido desarrollado íntegramente por:
+## 👥 Equipo
 
-* [Paula](https://github.com/paulova0121-alt)
-* [Cynthia](https://github.com/Zebdon)
-* [Ana Belén](https://github.com/AnaBHernandez)
-* [Jessica](https://github.com/rodriguezjessika36-debug)
+| Desarrolladora | Página | Responsabilidad |
+|---|---|---|
+| [Paula](https://github.com/paulova0121-alt) | Página 1 | Inicio y lógica de navegación |
+| [Cynthia](https://github.com/Zebdon) | Página 2 | El Reto y pistas visuales |
+| [Ana Belén](https://github.com/AnaBHernandez) | Página 3 | Terminal, validación y QA |
+| [Jessica](https://github.com/rodriguezjessika36-debug) | Páginas 4 y 5 | Pantallas finales y diseño responsive |
 
 ---
 *Creado por el Equipo de Desarrollo para Factoría F5 - 2026*
