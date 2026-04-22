@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal de Desbloqueo | Factoria F5</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="css/pagina-3-ana-belen.css">
+    <style>
+        /* ============================================
+           LAYOUT PRINCIPAL
+        ============================================ */
+        .layout {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - var(--altura-header) - 60px);
+        }
+
+        /* ============================================
+           SIDEBAR
+        ============================================ */
+        .sidebar {
+            width: 220px;
+            min-width: 220px;
+            background-color: #0a0a0c;
+            border-right: 1px solid var(--naranja);
+            display: flex;
+            flex-direction: column;
+            padding: var(--espacio-grande) 0;
+        }
+
+        .sidebar-operator {
+            padding: var(--espacio-medio) var(--espacio-grande);
+            border-bottom: 1px solid rgba(255, 107, 0, 0.3);
+            margin-bottom: var(--espacio-medio);
+        }
+
+        .sidebar-operator span {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            color: var(--naranja);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-operator p {
+            font-size: 10px;
+            color: rgba(0, 240, 255, 0.5);
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 0 var(--espacio-medio);
+            flex: 1;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--espacio-medio);
+            padding: var(--espacio-medio) var(--espacio-medio);
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            color: rgba(0, 240, 255, 0.6);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.activo {
+            background-color: rgba(255, 107, 0, 0.15);
+            color: var(--naranja);
+            border-left: 2px solid var(--naranja);
+        }
+
+        .sidebar-nav .icono {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-bottom {
+            padding: var(--espacio-medio) var(--espacio-grande);
+            border-top: 1px solid rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-terminar {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            font-weight: var(--font-weight-bold);
+            padding: var(--espacio-medio) var(--espacio-medio);
+            background-color: transparent;
+            color: #ff5555;
+            border: 1px solid #ff5555;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-terminar:hover {
+            background-color: #ff5555;
+            color: var(--negro);
+        }
+
+        /* ============================================
+           CONTENIDO PRINCIPAL
+        ============================================ */
+        .contenido-principal {
+            flex: 1;
+            display: flex;
+            gap: var(--espacio-grande);
+            padding: var(--espacio-grande);
+            align-items: flex-start;
+        }
+
+        /* ============================================
+           PANEL IZQUIERDO (STATUS)
+        ============================================ */
+        .panel-status {
+            width: 260px;
+            min-width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--espacio-medio);
+        }
+
+        .panel-card {
+            background-color: rgba(255, 107, 0, 0.05);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-left: 3px solid var(--naranja);
+            padding: var(--espacio-grande);
+        }
+
+        .panel-card-label {
+            font-family: var(--font-secondary);
+            font-size: 10px;
+            color: var(--naranja);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: var(--espacio-medio);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: var(--espacio-pequeno);
+            margin-bottom: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--azul-claro);
+            border-radius: 50%;
+            animation: pulso 2s infinite;
+        }
+
+        @keyframes pulso {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .status-texto {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            color: var(--azul-claro);
+            letter-spacing: 1px;
+        }
+
+        .log-line {
+            font-family: var(--font-secondary);
+            font-size: 10px;
+            color: rgba(0, 240, 255, 0.5);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .panel-alerta {
+            background-color: rgba(0, 240, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: var(--espacio-grande);
+        }
+
+        .alerta-label {
+            font-family: var(--font-secondary);
+            font-size: 10px;
+            color: var(--malva);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: var(--espacio-medio);
+        }
+
+        .alerta-texto {
+            font-size: 11px;
+            color: rgba(224, 187, 228, 0.8);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ============================================
+           TERMINAL CENTRAL
+        ============================================ */
+        .terminal {
+            flex: 1;
+            background-color: rgba(255,255,255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: var(--espacio-muy-grande) var(--espacio-enorme);
+        }
+
+        .terminal-titulo {
+            text-align: center;
+            margin-bottom: var(--espacio-muy-grande);
+        }
+
+        .terminal-titulo h2 {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            color: white;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .terminal-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--azul-claro), transparent);
+            margin-top: var(--espacio-medio);
+        }
+
+        /* Input display */
+        .codigo-label {
+            font-family: var(--font-secondary);
+            font-size: 10px;
+            color: var(--azul-claro);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--espacio-pequeno);
+        }
+
+        .codigo-display {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-bottom: 2px solid var(--azul-claro);
+            padding: var(--espacio-grande) var(--espacio-medio);
+            font-family: var(--font-secondary);
+            font-size: 32px;
+            letter-spacing: 16px;
+            text-align: center;
+            color: var(--naranja);
+            margin-bottom: var(--espacio-muy-grande);
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
+        }
+
+        /* Teclado numérico */
+        .teclado {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--espacio-medio);
+            margin-bottom: var(--espacio-muy-grande);
+        }
+
+        .num-key {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: var(--espacio-muy-grande) var(--espacio-medio);
+            font-family: var(--font-secondary);
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+        }
+
+        .num-key:hover {
+            background-color: rgba(0, 240, 255, 0.15);
+            border-color: var(--azul-claro);
+            color: var(--azul-claro);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            transform: scale(1.03);
+        }
+
+        .num-key:active {
+            transform: scale(0.95);
+        }
+
+        .btn-clear {
+            background-color: transparent;
+            border: 1px solid rgba(255, 85, 85, 0.4);
+            border-radius: 4px;
+            padding: var(--espacio-muy-grande) var(--espacio-medio);
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            color: #ff5555;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .btn-clear:hover {
+            background-color: #ff5555;
+            color: white;
+        }
+
+        .btn-enter {
+            background-color: var(--naranja);
+            border: none;
+            border-radius: 4px;
+            padding: var(--espacio-muy-grande) var(--espacio-medio);
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            font-weight: var(--font-weight-bold);
+            color: var(--negro);
+            cursor: pointer;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .btn-enter:hover {
+            background-color: var(--azul-claro);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Feedback */
+        .terminal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .auth-level {
+            font-family: var(--font-secondary);
+            font-size: 10px;
+            color: rgba(0, 240, 255, 0.4);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        #mensajeReto1 {
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(0, 240, 255, 0.4);
+        }
+
+        /* ============================================
+           PANTALLA FINAL
+        ============================================ */
+        #pantalla-final {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--espacio-muy-grande);
+            padding: var(--espacio-enorme);
+            text-align: center;
+        }
+
+        #pantalla-final.visible {
+            display: flex;
+        }
+
+        .victoria-titulo {
+            font-family: var(--font-secondary);
+            font-size: 48px;
+            color: #50FA7B;
+            text-shadow: 0 0 20px rgba(80, 250, 123, 0.5);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .victoria-subtitulo {
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            color: rgba(80, 250, 123, 0.6);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .contenido-principal {
+                flex-direction: column;
+                padding: var(--espacio-medio);
+            }
+
+            .panel-status {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .terminal {
+                padding: var(--espacio-grande) var(--espacio-medio);
+            }
+
+            .terminal-titulo h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .teclado {
+                gap: var(--espacio-pequeno);
+            }
+
+            .num-key {
+                padding: var(--espacio-grande) var(--espacio-pequeno);
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <img src="recursos/imagenes/logo-f5-v2.png" alt="Factoria F5" class="logof5">
+        <nav>
+            <div>
+                <a href="#">Misión</a>
+                <a href="#">Mapa</a>
+                <a href="#">Sobre F5</a>
+                <a href="#">Más Bunkers</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="layout">
+        
+        <!-- CONTENIDO: RETO -->
+        <main id="pantalla-reto" class="contenido-principal">
+
+            <!-- Panel de status -->
+            <!-- Panel de status -->
+            <div class="panel-status">
+                <div class="panel-card">
+                    <p class="panel-card-label">Estado del Sistema</p>
+                    <div class="status-item">
+                        <div class="status-dot"></div>
+                        <span class="status-texto">ENLACE_BUNKER: ACTIVO</span>
+                    </div>
+                    <div class="log-line">&gt; PROTOCOLO_NEURAL: OK</div>
+                    <div class="log-line">&gt; CIFRADO: AES-256-GCM</div>
+                    <div class="log-line">&gt; PROTOCOLO: FACTORIA_X9</div>
+                </div>
+                <div class="panel-alerta">
+                    <p class="alerta-label">Alerta de Seguridad</p>
+                    <p class="alerta-texto">"Intrusión detectada en Sector-7G. Protocolo de bloqueo activado. Introduce el código de verificación autorizado para continuar."</p>
+                </div>
+            </div>
+
+            <!-- Terminal numérica -->
+            <div class="terminal">
+                <div class="terminal-titulo">
+                    <h2>Sistema de Seguridad del Búnker</h2>
+                    <div class="terminal-divider"></div>
+                </div>
+
+                <p class="codigo-label">Código de Acceso Requerido</p>
+                <input class="codigo-display" id="numeroJugador" type="password" placeholder="••••••" readonly>
+
+                <div class="teclado">
+                    <button class="num-key">1</button>
+                    <button class="num-key">2</button>
+                    <button class="num-key">3</button>
+                    <button class="num-key">4</button>
+                    <button class="num-key">5</button>
+                    <button class="num-key">6</button>
+                    <button class="num-key">7</button>
+                    <button class="num-key">8</button>
+                    <button class="num-key">9</button>
+                    <button class="btn-clear" id="btn-clear">Borrar</button>
+                    <button class="num-key">0</button>
+                    <button class="btn-enter" id="btn-reto1">Confirmar</button>
+                </div>
+
+                <div class="terminal-footer">
+                    <span class="Nivel Auth">Nivel Autorización OMEGA</span>
+                    <span id="mensajeReto1">Intentos: 3/5</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- PANTALLA FINAL -->        
+        <div id="pantalla-final" class="pantalla">
+    <h2 style="color: #00F0FF; text-align: center; margin-top: 50px;">
+        RETO 3 COMPLETADO
+    </h2>
+    <p style="color: white; text-align: center;">
+        Esperando integración con la Página de Jessica...
+    </p>
+</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="recursos/imagenes/logo-f5-v1.png" alt="Factoria F5" class="logof5">
+        <small>© 2024 FACTORIA F5 // SYSTEM STATUS: STABLE</small>
+    </footer>
+
+    <script>
+        const NUMERO_SECRETO = 3536;
+
+        const input = document.getElementById("numeroJugador");
+        const mensaje = document.getElementById("mensajeReto1");
+        const pantallaReto = document.getElementById("pantalla-reto");
+        const pantallaFinal = document.getElementById("pantalla-final");
+        let intentos = 5;
+
+        // Teclas numéricas
+        document.querySelectorAll(".num-key").forEach(btn => {
+            btn.addEventListener("click", function () {
+                if (input.value.length < 6) {
+                    input.value += this.textContent.trim();
+                }
+            });
+        });
+
+        // Clear
+        document.getElementById("btn-clear").addEventListener("click", function () {
+            input.value = "";
+            mensaje.textContent = `Intentos: ${intentos}/5`;
+            mensaje.style.color = "rgba(0, 240, 255, 0.4)";
+        });
+
+        // Enter
+        document.getElementById("btn-reto1").addEventListener("click", function () {
+            if (parseInt(input.value) === NUMERO_SECRETO) {
+                pantallaReto.style.display = "none";
+                pantallaFinal.classList.add("visible");
+            } else {
+                intentos--;
+                input.value = "";
+                if (intentos > 0) {
+                    mensaje.textContent = `❌ Código incorrecto. Intentos: ${intentos}/5`;
+                    mensaje.style.color = "#ff5555";
+                } else {
+                    mensaje.textContent = "⛔ ACCESO DENEGADO";
+                    mensaje.style.color = "#ff5555";
+                    document.getElementById("btn-reto1").disabled = true;
+                }
+            }
+        });
+
+        // Reiniciar
+        document.getElementById("btn-reiniciar").addEventListener("click", function () {
+            input.value = "";
+            intentos = 5;
+            mensaje.textContent = "Retry: 5/5";
+            mensaje.style.color = "rgba(0, 240, 255, 0.4)";
+            document.getElementById("btn-reto1").disabled = false;
+            pantallaFinal.classList.remove("visible");
+            pantallaReto.style.display = "flex";
+        });
+    </script>
+
+</body>
+</html>
