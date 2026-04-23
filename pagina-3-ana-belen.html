@@ -520,60 +520,56 @@
     </footer>
 
     <script>
-        const NUMERO_SECRETO = 3536;
+    const NUMERO_SECRETO = 3536;
 
-        const input = document.getElementById("numeroJugador");
-        const mensaje = document.getElementById("mensajeReto1");
-        const pantallaReto = document.getElementById("pantalla-reto");
-        const pantallaFinal = document.getElementById("pantalla-final");
-        let intentos = 5;
+    const input = document.getElementById("numeroJugador");
+    const mensaje = document.getElementById("mensajeReto1");
+    let intentos = 5;
 
-        // Teclas numéricas
-        document.querySelectorAll(".num-key").forEach(btn => {
-            btn.addEventListener("click", function () {
-                if (input.value.length < 6) {
-                    input.value += this.textContent.trim();
-                }
-            });
-        });
-
-        // Clear
-        document.getElementById("btn-clear").addEventListener("click", function () {
-            input.value = "";
-            mensaje.textContent = `Intentos: ${intentos}/5`;
-            mensaje.style.color = "rgba(0, 240, 255, 0.4)";
-        });
-
-        // Enter
-        document.getElementById("btn-reto1").addEventListener("click", function () {
-            if (parseInt(input.value) === NUMERO_SECRETO) {
-                pantallaReto.style.display = "none";
-                pantallaFinal.classList.add("visible");
-            } else {
-                intentos--;
-                input.value = "";
-                if (intentos > 0) {
-                    mensaje.textContent = `❌ Código incorrecto. Intentos: ${intentos}/5`;
-                    mensaje.style.color = "#ff5555";
-                } else {
-                    mensaje.textContent = "⛔ ACCESO DENEGADO";
-                    mensaje.style.color = "#ff5555";
-                    document.getElementById("btn-reto1").disabled = true;
-                }
+    // Teclas numéricas (Funciona perfecto, se queda igual)
+    document.querySelectorAll(".num-key").forEach(btn => {
+        btn.addEventListener("click", function () {
+            if (input.value.length < 4) { // Cambiado a 4 porque el código es 3536
+                input.value += this.textContent.trim();
             }
         });
+    });
 
-        // Reiniciar
-        document.getElementById("btn-reiniciar").addEventListener("click", function () {
+    // Botón CLEAR (Borrar teclado)
+    document.getElementById("btn-clear").addEventListener("click", function () {
+        input.value = "";
+        mensaje.textContent = `Intentos: ${intentos}/5`;
+        mensaje.style.color = "rgba(0, 240, 255, 0.4)";
+    });
+
+    // Botón ENTER (Aquí está la magia del cambio)
+    document.getElementById("btn-reto1").addEventListener("click", function () {
+        if (parseInt(input.value) === NUMERO_SECRETO) {
+            // ✅ ÉXITO: Saltamos a la página de victoria de Jessica
+            window.location.href = 'pagina-4-jessica.html';
+        } else {
+            // ❌ ERROR
+            intentos--;
             input.value = "";
-            intentos = 5;
-            mensaje.textContent = "Retry: 5/5";
-            mensaje.style.color = "rgba(0, 240, 255, 0.4)";
-            document.getElementById("btn-reto1").disabled = false;
-            pantallaFinal.classList.remove("visible");
-            pantallaReto.style.display = "flex";
-        });
-    </script>
+            if (intentos > 0) {
+                mensaje.textContent = `❌ Código incorrecto. Intentos: ${intentos}/5`;
+                mensaje.style.color = "#E95420"; // El naranja oficial
+            } else {
+                // 💀 FALLO TOTAL: Saltamos a la página de derrota de Jessica
+                window.location.href = 'pagina-5-jessica.html';
+            }
+        }
+    });
+
+    // El botón de reiniciar de esta página ahora solo limpia el teclado
+    document.getElementById("btn-reiniciar").addEventListener("click", function () {
+        input.value = "";
+        intentos = 5;
+        mensaje.textContent = "Retry: 5/5";
+        mensaje.style.color = "rgba(0, 240, 255, 0.4)";
+        document.getElementById("btn-reto1").disabled = false;
+    });
+</script>
 
 </body>
 </html>

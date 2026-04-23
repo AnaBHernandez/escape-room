@@ -18,47 +18,23 @@ const numeroJugador = document.getElementById("numeroJugador");
 const mensajeReto1 = document.getElementById("mensajeReto1");
 
 // =========================
-// FUNCIONES DE NAVEGACIÓN
-// =========================
-function mostrarPantalla(pantalla) {
-  if(!pantalla) {
-    console.error("La pantalla de destino no existe en el HTML global.");
-    return;
-  }
-  // Escondemos TODO y mostramos solo la de Jessica
-  document.querySelectorAll(".pantalla, section").forEach(p => p.classList.add("oculta"));
-  pantalla.classList.remove("oculta");
-}
-
-// =========================
 // LÓGICA DEL RETO
 // =========================
 function comprobarReto1() {
   const codigoEntrado = parseInt(numeroJugador.value);
 
   if (codigoEntrado === NUMERO_SECRETO) {
-    // ✅ ÉXITO: Buscamos la sección de Jessica en el HTML global
-    // Jessica debe llamar a su section id="pantalla-escape-confirmado"
-    const pantallaJessicaExito = document.getElementById("pantalla-exito");
-    
-    if (pantallaJessicaExito) {
-        mostrarPantalla(pantallaJessicaExito);
-    } else {
-        // Esto es lo que pasará ahora mismo en tu ordenador:
-        alert("¡CÓDIGO CORRECTO! (En la rama 'dev' verás la pantalla de Jessica)");
-        console.log("Error: No encuentro el ID 'pantalla-exito' porque aún no hemos unido los archivos.");
-    }
-
+    // ✅ ÉXITO: Ya no buscamos "pantalla-exito", saltamos de archivo
+    window.location.href = 'pagina-4-jessica.html'; 
   } else {
-    // ❌ ERROR: Lógica de intentos
+    // ❌ ERROR: Bajamos intentos
     intentos--;
     if (intentos > 0) {
-      mensajeReto1.textContent = `❌ ERROR: Código no autorizado. Intentos: ${intentos}`;
-      mensajeReto1.style.color = "#FF6B00";
+      mensajeReto1.textContent = `❌ Código erróneo. Intentos: ${intentos}`;
+      mensajeReto1.style.color = "#E95420"; // Naranja Ubuntu
     } else {
-      // 💀 FALLO: Vamos a la pantalla de Sistema Comprometido de Jessica
-      const pantallaJessicaFallo = document.getElementById("pantalla-fallo");
-      mostrarPantalla(pantallaJessicaFallo);
+      // 💀 FALLO: Bloqueo del sistema
+      window.location.href = 'pagina-5-jessica.html';
     }
   }
 }

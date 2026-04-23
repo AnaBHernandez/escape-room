@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factoria F5 — Escape Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/p1_style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <img src="recursos/imagenes/logo-f5-v2.png" alt="Factoria F5" class="logof5">
+        <nav>
+            <div>
+                <a href="#">Misión</a>
+                <a href="#">Mapa</a>
+                <a href="#">Sobre F5</a>
+                <a href="#">Más Bunkers</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- VIDEO DE FONDO: fuera del main, solo es decorativo -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="recursos/videos/bunkerf5.mp4" type="video/mp4">
+    </video>
+    <!-- Capa oscura sobre el video -->
+    <div class="overlay"></div>
+
+    <!-- MAIN -->
+    <main>
+        <section class="intro">
+
+            <!-- Bloque izquierdo: botón + barra de carga -->
+            <div class="intro-acceso">
+
+                <div class="btn-hover-container">
+                    <button id="btn-acceder" class="button_initial" onclick="location.href='pagina-2-cyntia.html'">
+                Acceder al bunker
+                </button>
+                   
+                    <div class="barra-hover-wrapper">
+                        <div class="barra-hover-track">
+                            <div class="barra-hover-fill"></div>
+                        </div>
+                        <span class="barra-hover-label">Cargando acceso...</span>
+                    </div>
+                </div>
+
+                <!-- Barras de estado decorativas -->
+                <div class="barras-estado">
+                    <span class="barra-label">NEURAL LINK</span>
+                    <div class="barra1"><div class="barra1-lleno"></div></div>
+                    <span class="barra-label">SECTOR SCAN</span>
+                    <div class="barra2"><div class="barra2-lleno"></div></div>
+                </div>
+
+                <!-- Temporizador -->
+                <div class="time">
+                    <img src="recursos/imagenes/icons8-timer-96.png" alt="Temporizador" class="icon_time" id="icon_timer">
+                    <h2>¡Tienes solo 5 minutos antes del colapso!</h2>
+                </div>
+
+            </div>
+
+            <!-- Bloque derecho: lore -->
+            <div class="lore">
+                <h3>¡Colapso del sistema!</h3>
+                <img src="recursos/imagenes/icon-system-failure.png" alt="System Failure" class="icon_fail">
+                <p>El bunker F5 ha entrado en alerta. Una amenaza externa ha hackeado el sistema y ha vulnerado la seguridad del mismo.
+                Todo el búnker se ha bloqueado ante un peligro inminente. Ayuda al equipo de Factoría a escapar del interior antes de que el búnker se autodestruya. ¿Los podrás salvar?</p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="recursos/imagenes/logo-f5-v1.png" alt="Factoria F5" class="logof5-footer">
+        <small>© 2024 FACTORIA F5 // SYSTEM STATUS: STABLE</small>
+    </footer>
+
+    <script src="js/p1_Paula.js"></script>
+</body>
+</html>
