@@ -541,26 +541,25 @@
         mensaje.textContent = `Intentos: ${intentos}/5`;
         mensaje.style.color = "rgba(0, 240, 255, 0.4)";
     });
-
-    // Botón ENTER (Aquí está la magia del cambio)
-    document.getElementById("btn-reto1").addEventListener("click", function () {
-        if (parseInt(input.value) === NUMERO_SECRETO) {
-            // ✅ ÉXITO: Saltamos a la página de victoria de Jessica
-            window.location.href = 'pagina-4-jessica.html';
+    // Botón ENTER (Aquí estaba el error)
+document.getElementById("btn-reto1").addEventListener("click", function () {
+    if (parseInt(input.value) === NUMERO_SECRETO) {
+        // ✅ ÉXITO: Cambia 'pagina-5' por 'pagina-4'
+        window.location.href = 'pagina-4-jessica.html'; 
+    } else {
+        // ❌ ERROR
+        intentos--;
+        input.value = "";
+        if (intentos > 0) {
+            mensaje.textContent = `❌ Código incorrecto. Intentos: ${intentos}/5`;
+            mensaje.style.color = "#E95420";
         } else {
-            // ❌ ERROR
-            intentos--;
-            input.value = "";
-            if (intentos > 0) {
-                mensaje.textContent = `❌ Código incorrecto. Intentos: ${intentos}/5`;
-                mensaje.style.color = "#E95420"; // El naranja oficial
-            } else {
-                // 💀 FALLO TOTAL: Saltamos a la página de derrota de Jessica
-                window.location.href = 'pagina-5-jessica.html';
-            }
+            // 💀 FALLO TOTAL: Aquí sí vas a la página 5
+            window.location.href = 'pagina-5-jessica.html';
         }
-    });
-
+    }
+});
+    
     // El botón de reiniciar de esta página ahora solo limpia el teclado
     document.getElementById("btn-reiniciar").addEventListener("click", function () {
         input.value = "";

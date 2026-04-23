@@ -1,0 +1,505 @@
+/* ============================================
+   VARIABLES GLOBALES
+   ============================================ */
+:root {
+    --naranja: #FF6B00;
+    --azul-claro: #00F0FF;
+    --malva: #E0BBE4;
+    --negro: #0D0D0F;
+
+    --font-primary: "Plus Jakarta Sans", sans-serif;
+    --font-secondary: "Saira Stencil", sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --font-weight-extra: 800;
+
+    --espacio-pequeno: 8px;
+    --espacio-medio: 16px;
+    --espacio-grande: 24px;
+    --espacio-muy-grande: 32px;
+    --espacio-enorme: 48px;
+
+    --ancho-maximo-contenido: 1200px;
+    --altura-header: 80px;
+    --tamano-texto-pequeno: 14px;
+    --tamano-texto-normal: 16px;
+    --tamano-texto-grande: 20px;
+    --tamano-texto-muy-grande: 24px;
+    --tamano-texto-titulo: 32px;
+}
+
+
+/* ============================================
+   RESET Y BASE
+   ============================================ */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--tamano-texto-normal);
+    background: transparent;
+    color: var(--azul-claro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   VIDEO DE FONDO + OVERLAY
+   El video y el overlay son hijos directos del
+   body, fijos en pantalla, detrás de todo.
+   ============================================ */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Viñeta oscura: más opaca en los bordes, más suave en el centro */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+    );
+    z-index: -1;
+}
+
+
+/* ============================================
+   TIPOGRAFÍA
+   ============================================ */
+h1, h2, h3 {
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-bold);
+}
+
+h2 { font-size: var(--tamano-texto-muy-grande); }
+h3 { font-size: var(--tamano-texto-grande); }
+
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(13, 13, 15, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--naranja);
+    height: var(--altura-header);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--espacio-grande);
+}
+
+.logof5 {
+    height: calc(var(--altura-header) - 16px);
+    width: auto;
+}
+
+nav div {
+    display: flex;
+    gap: var(--espacio-muy-grande);
+    align-items: center;
+}
+
+nav a {
+    font-family: var(--font-secondary);
+    color: var(--naranja);
+    text-decoration: none;
+    font-size: var(--tamano-texto-normal);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--espacio-pequeno) 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+nav a:hover{
+    color: var(--azul-claro);
+    border-bottom-color: var(--azul-claro);
+}
+
+
+/* ============================================
+   MAIN
+   ============================================ */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espacio-enorme) var(--espacio-muy-grande);
+    min-height: calc(100vh - var(--altura-header) - 60px);
+}
+
+
+/* ============================================
+   SECCIÓN INTRO
+   ============================================ */
+.intro {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espacio-enorme);
+    width: 100%;
+    max-width: var(--ancho-maximo-contenido);
+}
+
+/* --- Columna izquierda --- */
+.intro-acceso {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--espacio-grande);
+    flex-shrink: 0;
+}
+
+
+/* ============================================
+   BOTÓN PRINCIPAL
+   ============================================ */
+.btn-hover-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+}
+
+.button_initial {
+    font-family: var(--font-secondary);
+    font-size: var(--tamano-texto-muy-grande);
+    font-weight: var(--font-weight-bold);
+    padding: var(--espacio-grande) var(--espacio-enorme);
+    background-color: var(--naranja);
+    color: var(--negro);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.button_initial:hover {
+    background-color: var(--azul-claro);
+    box-shadow: 0 0 24px rgba(0, 240, 255, 0.5);
+    transform: scale(1.03);
+}
+
+.button_initial:active {
+    transform: scale(0.97);
+}
+
+
+/* ============================================
+   BARRA DE CARGA EN HOVER DEL BOTÓN
+   ============================================ */
+.barra-hover-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.2s ease, max-height 0.3s ease;
+}
+
+.btn-hover-container:hover .barra-hover-wrapper {
+    opacity: 1;
+    max-height: 60px;
+}
+
+.barra-hover-track {
+    width: 100%;
+    height: 20px;
+    background-color: #0a0a0a;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(255, 107, 0, 0.4);
+}
+
+.barra-hover-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff3300, #FF6B00, #ffaa00);
+    border-radius: 6px;
+    box-shadow: 0 0 10px #FF6B00, 0 0 5px #ff3300;
+    animation: none;
+}
+
+.btn-hover-container:hover .barra-hover-fill {
+    animation: cargarBarra 1.8s ease-in-out infinite;
+}
+
+@keyframes cargarBarra {
+    0%   { width: 0%;   opacity: 1; }
+    80%  { width: 100%; opacity: 1; }
+    90%  { width: 100%; opacity: 0.6; }
+    100% { width: 0%;   opacity: 0; }
+}
+
+.barra-hover-label {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    color: var(--naranja);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+
+/* ============================================
+   BARRAS DE ESTADO DECORATIVAS
+   ============================================ */
+.barras-estado {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.barra-label {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    color: var(--azul-claro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.barra1, .barra2 {
+    width: 100%;
+    height: 12px;
+    background: #0a0a0a;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 13, 255, 0.3);
+}
+
+.barra1-lleno, .barra2-lleno {
+    height: 100%;
+    background: linear-gradient(90deg, #00ccff, #0015ff, #00b3ff);
+    border-radius: 6px;
+    box-shadow: 0 0 10px #7b00ff, 0 0 5px #bb00ff;
+    /* El ancho lo controla JS, pero ponemos un valor visible por defecto */
+    width: 60%;
+    transition: width 0.1s linear;
+}
+
+.barra2-lleno {
+    width: 38%;
+}
+
+
+/* ============================================
+   TEMPORIZADOR
+   ============================================ */
+.time {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-medio);
+}
+
+.icon_time {
+    height: 48px;
+    width: auto;
+    filter: drop-shadow(0 0 6px var(--naranja));
+}
+
+.time h2 {
+    font-size: var(--tamano-texto-grande);
+    color: var(--naranja);
+    text-shadow: 0 0 8px rgba(255, 107, 0, 0.5);
+}
+
+
+/* ============================================
+   BLOQUE LORE (columna derecha)
+   ============================================ */
+.lore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-grande);
+    padding: var(--espacio-muy-grande);
+    text-align: center;
+    color: var(--naranja);
+
+    /* Fondo semitransparente con imagen */
+    background-color: rgba(13, 13, 15, 0.7);
+    background-image: url('recursos/imagenes/background01.jpg');
+    background-size: cover;
+    background-blend-mode: overlay;
+
+    border: 3px solid var(--azul-claro);
+    border-radius: 12px;
+    transform: skew(-2deg);
+
+    max-width: 520px;
+    width: 100%;
+
+    transition: box-shadow 0.3s ease;
+}
+
+.lore:hover {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+    animation: glitch 0.3s ease;
+}
+
+@keyframes glitch {
+    0%   { transform: skew(-2deg) translate(0, 0); }
+    20%  { transform: skew(-2deg) translate(-3px, 1px); }
+    40%  { transform: skew(-2deg) translate(3px, -1px); }
+    60%  { transform: skew(-2deg) translate(-2px, 2px); }
+    80%  { transform: skew(-2deg) translate(2px, -2px); }
+    100% { transform: skew(-2deg) translate(0, 0); }
+}
+
+.lore h3 {
+    font-size: var(--tamano-texto-muy-grande);
+    color: var(--naranja);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.lore p {
+    font-size: var(--tamano-texto-normal);
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+}
+
+.icon_fail {
+    height: 160px;
+    width: auto;
+    border-radius: 50%;
+    border: 2px solid var(--naranja);
+    filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.6));
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background-color: rgba(13, 13, 15, 0.9);
+    border-top: 1px solid var(--naranja);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--espacio-medio) var(--espacio-grande);
+    flex-wrap: wrap;
+    gap: var(--espacio-medio);
+}
+
+.logof5-footer {
+    height: 40px;
+    width: auto;
+    opacity: 0.7;
+}
+
+footer small {
+    font-family: var(--font-secondary);
+    font-size: var(--tamano-texto-pequeno);
+    color: var(--azul-claro);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--negro); }
+::-webkit-scrollbar-thumb { background: var(--naranja); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--azul-claro); }
+
+
+/* ============================================
+   MEDIA QUERIES
+   ============================================ */
+
+/* Tablet: las dos columnas se apilan */
+@media (max-width: 900px) {
+    .intro {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .intro-acceso {
+        align-items: center;
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .lore {
+        max-width: 100%;
+    }
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+    :root {
+        --altura-header: 60px;
+        --tamano-texto-titulo: 24px;
+        --tamano-texto-muy-grande: 18px;
+        --tamano-texto-grande: 16px;
+    }
+
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: var(--espacio-medio);
+        gap: var(--espacio-pequeno);
+    }
+
+    nav div {
+        gap: var(--espacio-medio);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .button_initial {
+        font-size: var(--tamano-texto-normal);
+        padding: var(--espacio-medio) var(--espacio-grande);
+    }
+
+    .lore {
+        transform: skew(0deg);
+        padding: var(--espacio-grande);
+    }
+
+    .lore:hover {
+        animation: none;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
