@@ -12,9 +12,11 @@ Sistema de seguridad oficial de Factoría F5. Escape Room interactivo con estét
 
 
 ## 🛠️ Metodología y Herramientas
-- **Arquitectura:** SPA con Vanilla JS y control de vistas mediante CSS (`.oculta`)
+- **Arquitectura:** Multipage (5 archivos HTML) con navegación `window.location.href`
+- **Stack:** HTML5 · CSS3 · Vanilla JS
 - **Comunicación:** Discord
-- **Gestión de tareas:** Trello / GitHub Projects
+- **Gestión de tareas:** GitHub Projects
+- **Documentación:** GitHub Wiki
 - **Control de versiones:** GitHub con ramas por desarrolladora
 
 ## 👥 Equipo
